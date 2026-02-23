@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Proposal</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef);
+            color: #333;
+            text-align: center;
+            padding: 30px;
+            overflow-x: hidden;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #e91e63;
+        }
+        
+        .buttons {
+            margin: 20px 0;
+        }
+        
+        button {
+            font-size: 1.5em;
+            padding: 15px 40px;
+            margin: 10px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .yes-btn {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        .yes-btn:hover {
+            background-color: #ff5252;
+            transform: scale(1.1);
+        }
+        
+        .no-btn {
+            background-color: #4ecdc4;
+            color: white;
+            position: relative;
+        }
+        
+        .no-btn:hover {
+            background-color: #45b7aa;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .valentine-layout {
+            display: none;
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .hearts {
+            font-size: 4em;
+            animation: heartbeat 1s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .message {
+            font-size: 1.8em;
+            margin: 15px 0;
+            color: #e91e63;
+            font-weight: bold;
+        }
+        
+        .sub-message {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .fun-message {
+            font-size: 1.2em;
+            color: #ff5722;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #e91e63, transparent);
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECTION 1 -->
+    <div class="section" id="section1">
+        <h1>Are You My Saali No. 1?</h1>
+        
+        <div class="buttons" id="buttons1">
+            <button class="yes-btn" data-section="1">Yes</button>
+            <button class="no-btn" data-section="1">No</button>
+        </div>
+        
+        <div id="fun1" class="hidden">
+            <p class="fun-message">Oh no! The "No" button is playing hard to get! Try again... 😏</p>
+        </div>
+        
+        <div id="valentine1" class="valentine-layout">
+            <div class="hearts">❤️</div>
+            <p class="message">sojao kasususususususu !!</p>
+            <p class="sub-message">Busy Log.....</p>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECTION 2 -->
+    <div class="section" id="section2">
+        <h2>Are You My Saali No. 2?</h2>
+        
+        <div class="buttons" id="buttons2">
+            <button class="yes-btn" data-section="2">Yes</button>
+            <button class="no-btn" data-section="2">No</button>
+        </div>
+        
+        <div id="fun2" class="hidden">
+            <p class="fun-message">Oh no! The "No" button is playing hard to get! Try again... 😏</p>
+        </div>
+        
+        <div id="valentine2" class="valentine-layout">
+            <div class="hearts">❤️</div>
+            <p class="message">Nepali Momo !!</p>
+            <p class="sub-message">chowmin.....</p>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECTION 3 -->
+    <div class="section" id="section3">
+        <h3>Are You My Saali No. 3?</h3>
+        
+        <div class="buttons" id="buttons3">
+            <button class="yes-btn" data-section="3">Yes</button>
+            <button class="no-btn" data-section="3">No</button>
+        </div>
+        
+        <div id="fun3" class="hidden">
+            <p class="fun-message">Oh no! The "No" button is playing hard to get! Try again... 😏</p>
+        </div>
+        
+        <div id="valentine3" class="valentine-layout">
+            <div class="hearts">❤️</div>
+            <p class="message">Tingu Beta !!</p>
+            <p class="sub-message">Savroop bhi aagya ab to bikaner se .....</p>
+        </div>
+    </div>
+
+    <script>
+        const funMessages = [
+            "Nope, not today! The button is running away! 🏃‍♂️",
+            "Are you sure? It's getting faster! 😜",
+            "Haha, keep trying! Maybe next time? 😉",
+            "The 'No' button says: 'I'm not ready yet!' 😂",
+            "Catch me if you can! 😏",
+            "Almost had it! Try again! 🎯"
+        ];
+
+        let clickCounts = [0, 0, 0]; // For each section
+
+        // Handle Yes buttons
+        document.querySelectorAll('.yes-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const sectionNum = this.getAttribute('data-section');
+                
+                // Hide buttons and fun message
+                document.getElementById(`buttons${sectionNum}`).classList.add('hidden');
+                document.getElementById(`fun${sectionNum}`).classList.add('hidden');
+                
+                // Show Valentine message
+                document.getElementById(`valentine${sectionNum}`).style.display = 'block';
+            });
+        });
+
+        // Handle No buttons (hover = run away)
+        document.querySelectorAll('.no-btn').forEach(btn => {
+            btn.addEventListener('mouseover', function() {
+                const sectionNum = this.getAttribute('data-section');
+                const funDiv = document.getElementById(`fun${sectionNum}`);
+                
+                // Random position
+                const randomX = Math.random() * (window.innerWidth - 150);
+                const randomY = Math.random() * (window.innerHeight - 100);
+                
+                this.style.position = 'fixed';
+                this.style.left = Math.max(0, randomX) + 'px';
+                this.style.top = Math.max(0, randomY) + 'px';
+                
+                // Show fun message
+                funDiv.classList.remove('hidden');
+                funDiv.innerHTML = `<p class="fun-message">${funMessages[clickCounts[sectionNum-1] % funMessages.length]}</p>`;
+                clickCounts[sectionNum-1]++;
+            });
+
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert("Nice try! But 'No' isn't an option today. 😉");
+            });
+        });
+    </script>
+
+</body>
+</html>
